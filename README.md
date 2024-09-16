@@ -13,3 +13,7 @@
 ## Diagrama de caso de uso
 
 ![Diagrama de caso de uso para sistema de aluguel de carros](/imagens/diagrama-caso-de-uso.png)
+
+## Diagrama de pacotes
+
+![Diagrama de pacotes para sistema de aluguel de carros](/imagens/Diagrama de Pacotes.png)
