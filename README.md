@@ -9,3 +9,7 @@
 * US5 - Como cliente, desejo consultar os meus pedidos feitos no sistema.
 * US6 - Como cliente, desejo modificar os meus pedidos feitos anteriormente no sistema.
 * US7 - Como cliente, desejo cancelar os meus pedidos feitos no sistema.
+
+## Diagrama de caso de uso
+
+![Diagrama de caso de uso para sistema de aluguel de carros](/imagens/diagrama-caso-de-uso.png)
