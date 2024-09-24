@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.aluguel.sistema_de_aluguel_de_carros.SistemaDeAluguelDeCarrosApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.965 s -- in com.aluguel.sistema_de_aluguel_de_carros.SistemaDeAluguelDeCarrosApplicationTests

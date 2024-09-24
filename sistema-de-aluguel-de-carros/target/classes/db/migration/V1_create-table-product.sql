@@ -1,0 +1,5 @@
+CREATE TABLE cliente (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    cpf NUMBER INT NOT NULL
+);
