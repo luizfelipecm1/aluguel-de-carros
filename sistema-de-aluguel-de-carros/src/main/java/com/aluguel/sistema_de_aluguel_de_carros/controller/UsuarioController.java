@@ -16,6 +16,11 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @PostMapping
+    public UsuarioEntity createUsuario(@RequestBody UsuarioEntity usuario){
+        return usuarioService.saveUsuario(usuario);
+    }
+
     @GetMapping
     public List<UsuarioEntity> getAllUsuarios(){
         return usuarioService.getAllUsuarios();

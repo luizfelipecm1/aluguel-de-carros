@@ -2,6 +2,7 @@ package com.aluguel.sistema_de_aluguel_de_carros.service;
 
 import com.aluguel.sistema_de_aluguel_de_carros.model.UsuarioEntity;
 import com.aluguel.sistema_de_aluguel_de_carros.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -28,6 +29,7 @@ public class UsuarioService {
     public UsuarioEntity saveUsuario(UsuarioEntity usuario) {
         return usuarioRepository.save(usuario);
     }
+
 
     public UsuarioEntity updateUsuario(int id, UsuarioEntity usuarioDetails){
         UsuarioEntity usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
