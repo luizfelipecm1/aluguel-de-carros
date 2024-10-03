@@ -37,21 +37,27 @@ CREATE TABLE user_entity (
     nome VARCHAR(100) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
     endereco VARCHAR(255) NOT NULL,
-    profissao VARCHAR(100) NOT NULL
+    profissao VARCHAR(100) NOT NULL,
+    role VARCHAR(50) NOT NULL -- Adicionando o campo role
 );
 
-INSERT INTO user_entity (nome, cpf, endereco, profissao)
+
+INSERT INTO user_entity (nome, cpf, endereco, profissao, role)
 VALUES
-    ('João Silva', '123.456.789-00', 'Rua das Flores, 123', 'Engenheiro'),
-    ('Maria Oliveira', '987.654.321-00', 'Avenida Central, 456', 'Médica'),
-    ('Carlos Pereira', '321.654.987-00', 'Travessa das Palmeiras, 789', 'Advogado'),
-    ('Ana Souza', '456.789.123-00', 'Rua dos Pinheiros, 101', 'Professora'),
-    ('Roberto Lima', '654.321.987-00', 'Praça das Árvores, 202', 'Arquiteto'),
-    ('Paula Martins', '789.123.456-00', 'Rua do Sol, 303', 'Designer Gráfico'),
-    ('Fernanda Costa', '159.753.486-00', 'Avenida das Nações, 404', 'Dentista'),
-    ('Eduardo Ferreira', '357.951.258-00', 'Rua do Porto, 505', 'Programador'),
-    ('Bruna Alves', '258.147.369-00', 'Avenida do Mar, 606', 'Psicóloga'),
-    ('Ricardo Gomes', '147.258.369-00', 'Rua da Montanha, 707', 'Administrador');
+    ('João Silva', '123.456.789-00', 'Rua das Flores, 123', 'Engenheiro', 'cliente'),
+    ('Maria Oliveira', '987.654.321-00', 'Avenida Central, 456', 'Médica', 'cliente'),
+    ('Carlos Pereira', '321.654.987-00', 'Travessa das Palmeiras, 789', 'Advogado', 'agente'),
+    ('Ana Souza', '456.789.123-00', 'Rua dos Pinheiros, 101', 'Professora', 'cliente'),
+    ('Roberto Lima', '654.321.987-00', 'Praça das Árvores, 202', 'Arquiteto', 'cliente'),
+    ('Paula Martins', '789.123.456-00', 'Rua do Sol, 303', 'Designer Gráfico', 'agente'),
+    ('Fernanda Costa', '159.753.486-00', 'Avenida das Nações, 404', 'Dentista', 'cliente'),
+    ('Eduardo Ferreira', '357.951.258-00', 'Rua do Porto, 505', 'Programador', 'agente'),
+    ('Bruna Alves', '258.147.369-00', 'Avenida do Mar, 606', 'Psicóloga', 'cliente'),
+    ('Ricardo Gomes', '147.258.369-00', 'Rua da Montanha, 707', 'Administrador', 'agente');
+
+    UPDATE user_entity SET role = 'CLIENTE' WHERE id IN (1, 2, 4, 5, 7, 9);
+    UPDATE user_entity SET role = 'AGENET' WHERE id IN (3, 6, 8, 10);
+
 
 SELECT * FROM user_entity;
 
