@@ -1,5 +1,6 @@
 package com.aluguel.sistema_de_aluguel_de_carros.model;
 
+import com.aluguel.sistema_de_aluguel_de_carros.model.enums.UsuarioEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,16 @@ public class UsuarioEntity {
     private String cpf;
     private String endereco;
     private String profissao;
+
+    @Enumerated(EnumType.STRING)
+    private UsuarioEnum role;
+
+    public boolean isCliente(){
+        return this.role == UsuarioEnum.CLIENTE;
+    }
+
+    public boolean isAgente(){
+        return this.role == UsuarioEnum.AGENTE;    }
 
     public void cadastrarPedidos(){
 

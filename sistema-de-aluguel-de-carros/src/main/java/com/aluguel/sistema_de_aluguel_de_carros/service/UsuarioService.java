@@ -1,6 +1,7 @@
 package com.aluguel.sistema_de_aluguel_de_carros.service;
 
 import com.aluguel.sistema_de_aluguel_de_carros.model.UsuarioEntity;
+import com.aluguel.sistema_de_aluguel_de_carros.model.enums.UsuarioEnum;
 import com.aluguel.sistema_de_aluguel_de_carros.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+     public List<UsuarioEntity> getClientes() {
+        return usuarioRepository.findByRole(UsuarioEnum.CLIENTE);
+     }
+
+     public List<UsuarioEntity> getAgentes(){
+        return usuarioRepository.findByRole(UsuarioEnum.AGENTE);
+     }
 
     public UsuarioEntity updateUsuario(int id, UsuarioEntity usuarioDetails){
         UsuarioEntity usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));

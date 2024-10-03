@@ -1,6 +1,7 @@
 package com.aluguel.sistema_de_aluguel_de_carros.repository;
 
 import com.aluguel.sistema_de_aluguel_de_carros.model.UsuarioEntity;
+import com.aluguel.sistema_de_aluguel_de_carros.model.enums.UsuarioEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,6 @@ import java.util.List;
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer> {
     List<UsuarioEntity> findByNome(String nome);
     List<UsuarioEntity> findByCpf(String cpf);
+    List<UsuarioEntity> findByRole(UsuarioEnum role);
 
 }

@@ -21,6 +21,16 @@ public class UsuarioController {
         return usuarioService.saveUsuario(usuario);
     }
 
+    @GetMapping("/clientes")
+    public List<UsuarioEntity> getAllClientes(){
+        return usuarioService.getClientes();
+    }
+
+    @GetMapping("/agentes")
+    public List<UsuarioEntity> getAllAgentes(){
+        return usuarioService.getAgentes();
+    }
+
     @GetMapping
     public List<UsuarioEntity> getAllUsuarios(){
         return usuarioService.getAllUsuarios();
