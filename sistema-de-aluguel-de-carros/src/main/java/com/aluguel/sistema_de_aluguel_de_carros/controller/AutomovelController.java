@@ -32,16 +32,21 @@ public class AutomovelController {
 
     }
 
+    //consulta personalizada
+
+    // http://localhost:8080/auto/buscarPorMatricula/(Matricula do automovel)
     @GetMapping("/buscaPorMatricula/{matricula}")
     public List<AutomovelEntity> buscarVeiculoPorMatricula(@PathVariable String matricula){
         return automovelService.buscaPorMatricula(matricula);
     }
 
+    // http://localhost:8080/auto/buscarPorPlaca/(Placa do automovel)
     @GetMapping("/buscarPorPlaca/{placa}")
     public List<AutomovelEntity> buscaVeiculoPorPlaca(@PathVariable String placa){
         return automovelService.buscaPorPlaca(placa);
     }
 
+    // http: //localhost:8080/auto/buscarPorMarca/(Marca do automovel)
     @GetMapping("/buscarPorMarca/{marca}")
     public List<AutomovelEntity> buscaVeiculoPorMarca(@PathVariable String marca){
         return automovelService.buscarPorMarca(marca);
