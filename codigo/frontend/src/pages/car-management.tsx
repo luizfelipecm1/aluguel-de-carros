@@ -20,11 +20,11 @@ import CarList from '../components/CarList';
       setEditingCar(null);
     };
   
-    const handleEdit = (car: any) => {
-      setEditingCar(car);
+    const handleEditCar = (updatedCar: { id: any; }) => {
+      setCars(cars.map(car => car.id === updatedCar.id ? updatedCar : car));
     };
   
-    const handleDelete = (id: number) => {
+    const handleDeleteCar = (id: any) => {
       setCars(cars.filter(car => car.id !== id));
     };
   
@@ -32,7 +32,7 @@ import CarList from '../components/CarList';
       <div className="grid grid-cols-1 gap-10">
         <h1>Gestão de Carros</h1>
         <CarForm car={editingCar} onSave={handleSave} />
-        <CarList cars={cars} onEdit={handleEdit} onDelete={handleDelete} />
+        <CarList cars={cars} onEdit={handleEditCar} onDelete={handleDeleteCar} />
       </div>
     );
   };
