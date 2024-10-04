@@ -51,20 +51,20 @@ const CarList: React.FC<CarListProps> = ({ cars, onEdit, onDelete }) => {
 
       <Dialog header="Editar Carro" visible={editDialogVisible} style={{ width: '50vw' }} onHide={hideDialog}>
         {selectedCar && (
-          <div>
-            <div className="p-field">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-1 p-field">
               <label htmlFor="make">Marca</label>
               <InputText id="make" value={selectedCar.make} onChange={(e) => setSelectedCar({ ...selectedCar, make: e.target.value })} />
             </div>
-            <div className="p-field">
+            <div className="grid gap-1 p-field">
               <label htmlFor="model">Modelo</label>
               <InputText id="model" value={selectedCar.model} onChange={(e) => setSelectedCar({ ...selectedCar, model: e.target.value })} />
             </div>
-            <div className="p-field">
+            <div className="grid gap-1 p-field">
               <label htmlFor="placa">Placa</label>
               <InputText id="placa" value={selectedCar.placa} onChange={(e) => setSelectedCar({ ...selectedCar, placa: e.target.value })} />
             </div>
-            <div className="p-field">
+            <div className="grid gap-1 p-field">
               <label htmlFor="year">Ano</label>
               <InputText id="year" value={selectedCar.year} onChange={(e) => setSelectedCar({ ...selectedCar, year: e.target.value })} />
             </div>

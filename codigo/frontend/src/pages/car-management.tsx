@@ -29,7 +29,7 @@ import CarList from '../components/CarList';
     };
   
     return (
-      <div>
+      <div className="grid grid-cols-1 gap-10">
         <h1>Gestão de Carros</h1>
         <CarForm car={editingCar} onSave={handleSave} />
         <CarList cars={cars} onEdit={handleEdit} onDelete={handleDelete} />
