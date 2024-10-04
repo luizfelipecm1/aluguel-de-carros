@@ -32,10 +32,10 @@ const itemTemplate = (data: any, layout: any) => {
               {data.agent}
             </p>
           </div>
-          <div className="align-middle">
+          <div>
             <p>R$ {data.value}</p>
 
-            <Button icon="pi pi-shopping-cart" label="Comprar" />
+            <Button icon="pi pi-shopping-cart" label="Alugar" />
           </div>
         </div>
       </Card>
