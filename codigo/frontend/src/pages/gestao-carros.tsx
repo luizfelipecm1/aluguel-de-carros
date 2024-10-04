@@ -1,3 +1,3 @@
-export function GestaoCarros() {
-  return <h1>Gestao Carros</h1>;
+export function CarManagement() {
+  return <h1>Carros</h1>;
 }
