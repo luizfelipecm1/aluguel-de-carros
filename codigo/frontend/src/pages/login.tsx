@@ -18,6 +18,11 @@ export function Login() {
         <InputText placeholder="Senha" />
       </div>
       <Button label="Entrar" />
+      <Button
+        label="Cadastrar"
+        link
+        onClick={() => window.open("/cadastro", "_self")}
+      />
     </div>
   );
 }
