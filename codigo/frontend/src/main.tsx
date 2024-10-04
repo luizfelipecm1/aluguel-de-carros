@@ -3,9 +3,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import { CarManagement } from "./pages/car-management";
 import { CarRental } from "./pages/car-rental";
 import { Dashboard } from "./pages/dashboard";
-import { CarManagement } from "./pages/gestao-carros";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
