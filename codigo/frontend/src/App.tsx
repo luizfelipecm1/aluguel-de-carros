@@ -1,7 +1,10 @@
+import { Button } from "primereact/button";
+
 export function App() {
   return (
     <>
-      <p className="text-xl">Hello World</p>
+      <Button label="Teste" />
+      <h1>Hello world</h1>
     </>
   );
 }
