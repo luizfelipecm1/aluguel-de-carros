@@ -15,6 +15,4 @@ public interface AutomovelRepository extends JpaRepository<AutomovelEntity, Long
     List<AutomovelEntity> findByplaca(String placa);
     List<AutomovelEntity> findByModeloAndAno(String modelo, int ano);
 
-
-
 }

@@ -21,14 +21,16 @@ const CarForm: React.FC<CarFormProps> = ({ car, onSave }) => {
   };
 
   return (
+    <div>
     <form onSubmit={handleSubmit}>
       <InputText name="make" value={formData.make} onChange={handleChange} placeholder="Marca" />
       <InputText name="model" value={formData.model} onChange={handleChange} placeholder="Modelo" />
       <InputText name="year" value={formData.year} onChange={handleChange} placeholder="Ano" />
       <label htmlFor="placa" className="font-bold block mb-2"></label>
       <InputText name="placa" value={formData.placa} onChange={handleChange} id="placa" placeholder="Placa"></InputText>
-      <Button type="submit">Save</Button>
+      <Button type="submit">Salvar</Button>
     </form>
+    </div>
   );
 };
 
