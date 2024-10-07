@@ -17,10 +17,10 @@ const CarList: React.FC<CarListProps> = ({ cars, onEdit, onDelete }) => {
 
   const actionBodyTemplate = (rowData: any) => {
     return (
-      <div>
-        <Button onClick={() => editCar(rowData)}>Editar</Button>
-        <Button onClick={() => onDelete(rowData.id)}>Deletar</Button>
-      </div>
+        <div>
+          <Button onClick={() => editCar(rowData)}>Editar</Button>
+          <Button onClick={() => onDelete(rowData.id)}>Deletar</Button>
+        </div>
     );
   };
 
@@ -39,41 +39,58 @@ const CarList: React.FC<CarListProps> = ({ cars, onEdit, onDelete }) => {
     hideDialog();
   };
 
-  return (
-    <div className=''>
-      <DataTable value={cars} tableStyle={{ minWidth: '50rem' }}>
-        <Column field="make" header="Marca"></Column>
-        <Column field="model" header="Modelo"></Column>
-        <Column field="placa" header="Placa"></Column>
-        <Column field="year" header="Ano"></Column>
-        <Column body={actionBodyTemplate} header="Ações"></Column>
-      </DataTable>
+  const imagesBodyTemplate = (rowData: any) => {
+    return (
+        <div className="flex space-x-2">
+          {rowData.imagens.map((image: string, index: number) => (
+              <img
+                  key={index}
+                  src={image}
+                  alt={`Car Image ${index}`}
+                  className="h-20 w-20 object-cover rounded-md cursor-pointer" // Adjusted styles
+                  onClick={() => window.open(image, '_blank')}
+              />
+          ))}
+        </div>
+    );
+  };
 
-      <Dialog header="Editar Carro" visible={editDialogVisible} style={{ width: '50vw' }} onHide={hideDialog}>
-        {selectedCar && (
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-1 p-field">
-              <label htmlFor="make">Marca</label>
-              <InputText id="make" value={selectedCar.make} onChange={(e) => setSelectedCar({ ...selectedCar, make: e.target.value })} />
-            </div>
-            <div className="grid gap-1 p-field">
-              <label htmlFor="model">Modelo</label>
-              <InputText id="model" value={selectedCar.model} onChange={(e) => setSelectedCar({ ...selectedCar, model: e.target.value })} />
-            </div>
-            <div className="grid gap-1 p-field">
-              <label htmlFor="placa">Placa</label>
-              <InputText id="placa" value={selectedCar.placa} onChange={(e) => setSelectedCar({ ...selectedCar, placa: e.target.value })} />
-            </div>
-            <div className="grid gap-1 p-field">
-              <label htmlFor="year">Ano</label>
-              <InputText id="year" value={selectedCar.year} onChange={(e) => setSelectedCar({ ...selectedCar, year: e.target.value })} />
-            </div>
-            <Button label="Salvar" onClick={saveCar} />
-          </div>
-        )}
-      </Dialog>
-    </div>
+  return (
+      <div>
+        <DataTable value={cars} tableStyle={{ minWidth: '50rem' }}>
+          <Column field="marca" header="Marca"></Column>
+          <Column field="modelo" header="Modelo"></Column>
+          <Column field="placa" header="Placa"></Column>
+          <Column field="ano" header="Ano"></Column>
+          <Column body={imagesBodyTemplate} header="Imagens"></Column>
+          <Column body={actionBodyTemplate} header="Ações"></Column>
+        </DataTable>
+
+        <Dialog header="Editar Carro" visible={editDialogVisible} style={{ width: '50vw' }} onHide={hideDialog}>
+          {selectedCar && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-1 p-field">
+                  <label htmlFor="make">Marca</label>
+                  <InputText id="make" value={selectedCar.marca} onChange={(e) => setSelectedCar({ ...selectedCar, marca: e.target.value })} />
+                </div>
+                <div className="grid gap-1 p-field">
+                  <label htmlFor="model">Modelo</label>
+                  <InputText id="model" value={selectedCar.modelo} onChange={(e) => setSelectedCar({ ...selectedCar, modelo: e.target.value })} />
+                </div>
+                <div className="grid gap-1 p-field">
+                  <label htmlFor="placa">Placa</label>
+                  <InputText id="placa" value={selectedCar.placa} onChange={(e) => setSelectedCar({ ...selectedCar, placa: e.target.value })} />
+                </div>
+                <div className="grid gap-1 p-field">
+                  <label htmlFor="year">Ano</label>
+                  <InputText id="year" value={selectedCar.ano} onChange={(e) => setSelectedCar({ ...selectedCar, ano: e.target.value })} />
+                </div>
+                <Button label="Salvar" onClick={saveCar} />
+              </div>
+          )}
+        </Dialog>
+      </div>
   );
 };
 
-export default CarList; 
+export default CarList;

@@ -1,6 +1,7 @@
 package com.example.alugueldeveiculos.controller;
 
 import com.example.alugueldeveiculos.model.PedidoEntity;
+import com.example.alugueldeveiculos.repository.PedidoRepository;
 import com.example.alugueldeveiculos.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,18 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
     @PostMapping
-    public ResponseEntity<PedidoEntity> criarPedido(@RequestBody PedidoEntity pedido){
-        PedidoEntity novoPedido = pedidoService.criarPedido((pedido));
-        return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
+    public ResponseEntity<PedidoEntity> createPedido(@RequestBody PedidoEntity pedido) {
+        // Aqui você deve ter um método para garantir que o automovel_id não seja nulo
+        if (pedido.getAutomovel() == null) {
+            return ResponseEntity.badRequest().body(null); // Retorna um erro se o ID do carro não for fornecido
+        }
+
+        PedidoEntity savedPedido = pedidoRepository.save(pedido);
+        return ResponseEntity.ok(savedPedido);
     }
 
     @GetMapping("/{id}")

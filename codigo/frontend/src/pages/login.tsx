@@ -18,11 +18,12 @@ export function Login() {
   }, []);
 
   const handleLogin = () => {
-    const user = users.find(user => user.email === email && user.password === password);
+    const user = users.find(user => user.nome === email && user.cpf === password);
     if (user) {
       console.log("Login successful");
-      // Redirect or perform other actions
+      window.open("/Dashboard")
     } else {
+        alert('Senha inválida')
       console.error("Invalid credentials");
     }
   };
@@ -36,7 +37,7 @@ export function Login() {
         </span>
         <InputText 
           placeholder="E-mail" 
-          value={email} 
+          value={email}
           onChange={(e) => setEmail(e.target.value)} 
         />
       </div>
@@ -45,8 +46,9 @@ export function Login() {
           <i className="pi pi-lock"></i>
         </span>
         <InputText 
-          placeholder="Senha" 
-          value={password} 
+          placeholder="Senha"
+          type="password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)} 
         />
       </div>

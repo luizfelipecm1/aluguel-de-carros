@@ -1,6 +1,7 @@
 package com.example.alugueldeveiculos.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "auto_entity")
@@ -10,7 +11,7 @@ public class AutomovelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String matricula;
+    private Long matricula;
 
     public String placa;
 
@@ -20,22 +21,26 @@ public class AutomovelEntity {
 
     public String modelo;
 
+    @OneToMany(mappedBy = "automovel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ImagemEntity> imagens;
+
     public AutomovelEntity(){}
 
-    public AutomovelEntity(String matricula, String placa, int ano, String marca, String modelo, Long id) {
+    public AutomovelEntity(Long matricula, String placa, int ano, String marca, String modelo, Long id, List<ImagemEntity> imagens) {
         this.matricula = matricula;
         this.placa = placa;
         this.ano = ano;
         this.marca = marca;
         this.modelo = modelo;
         this.id = id;
+        this.imagens = imagens;
     }
 
-    public String getMatricula() {
+    public Long getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(Long matricula) {
         this.matricula = matricula;
     }
 
@@ -77,5 +82,13 @@ public class AutomovelEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<ImagemEntity> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<ImagemEntity> imagens) {
+        this.imagens = imagens;
     }
 }

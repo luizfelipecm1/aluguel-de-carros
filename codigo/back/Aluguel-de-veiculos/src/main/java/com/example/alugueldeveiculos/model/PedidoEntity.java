@@ -3,9 +3,8 @@ package com.example.alugueldeveiculos.model;
 import com.example.alugueldeveiculos.model.enums.PedidoEnum;
 import jakarta.persistence.*;
 
-
 @Entity
-@Table(name = "cliente_entity")
+@Table(name = "pedido_entity")  // Altere o nome da tabela para "pedido_entity"
 public class PedidoEntity {
 
     @Id
@@ -16,15 +15,14 @@ public class PedidoEntity {
     private PedidoEnum status;
 
     @ManyToOne
-    @JoinColumn(name = "nome")
+    @JoinColumn(name = "cliente_id")  // Mapeia corretamente com a coluna cliente_id
     private UsuarioEntity cliente;
 
     @ManyToOne
-    @JoinColumn(name = "matricula")
+    @JoinColumn(name = "automovel_id")  // Mapeia corretamente com a coluna automovel_matricula
     private AutomovelEntity automovel;
 
-    public PedidoEntity(){
-
+    public PedidoEntity() {
     }
 
     public PedidoEntity(int idPedido, PedidoEnum status, UsuarioEntity cliente, AutomovelEntity automovel) {

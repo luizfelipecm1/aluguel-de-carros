@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface AutomovelRepository extends JpaRepository<AutomovelEntity, Long> {
-    List<AutomovelEntity> findByMatricula(String matricula);
+    List<AutomovelEntity> findByMatricula(Long matricula);
     List<AutomovelEntity> findByAno(int ano);
     List<AutomovelEntity> findByMarca(String marca);
     List<AutomovelEntity> findByModelo(String modelo);

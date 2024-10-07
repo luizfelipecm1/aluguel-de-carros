@@ -8,40 +8,41 @@ import CarForm from '../components/CarForm';
 import CarList from '../components/CarList';
 
 export const CarManagement: React.FC = () => {
-  const [cars, setCars] = useState<any[]>([]);
-  const [editingCar, setEditingCar] = useState<any | null>(null);
+    const [cars, setCars] = useState<any[]>([]);
+    const [editingCar, setEditingCar] = useState<any | null>(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/auto')
-        .then(response => {
-          console.log(response.data); // Log data to check fields
-          setCars(response.data);
-        })
-        .catch(error => console.error('Error fetching data:', error));
-  }, []);
+    useEffect(() => {
+        axios.get('http://localhost:8080/auto')
+            .then(response => {
+                console.log(response.data);
+                setCars(response.data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
 
-  const handleSave = (car: any) => {
-    if (editingCar) {
-      setCars(cars.map(c => (c.id === car.id ? car : c)));
-    } else {
-      setCars([...cars, { ...car, id: Date.now() }]);
-    }
-    setEditingCar(null);
-  };
+    const handleSave = async (car: any) => {
+        try {
+            const response = await axios.post('http://localhost:8080/auto', car);
+            setCars([...cars, response.data]); // Atualiza a lista de carros com o novo carro salvo
+            alert("Veículo inserido com sucesso!!")
+        } catch (error) {
+            console.error('Erro ao salvar carro:', error);
+        }
+    };
 
-  const handleEditCar = (updatedCar: { id: any; }) => {
-    setCars(cars.map(car => car.id === updatedCar.id ? updatedCar : car));
-  };
+    const handleEditCar = (updatedCar: { id: any; }) => {
+        setCars(cars.map(car => car.id === updatedCar.id ? updatedCar : car));
+    };
 
-  const handleDeleteCar = (id: any) => {
-    setCars(cars.filter(car => car.id !== id));
-  };
+    const handleDeleteCar = (id: any) => {
+        setCars(cars.filter(car => car.id !== id));
+    };
 
-  return (
-      <div className="grid grid-cols-1 gap-10">
-        <h1>Gestão de Carros</h1>
-        <CarForm car={editingCar} onSave={handleSave} />
-        <CarList cars={cars} onEdit={handleEditCar} onDelete={handleDeleteCar} />
-      </div>
-  );
+    return (
+        <div className="grid grid-cols-1 gap-10">
+            <h1>Gestão de Carros</h1>
+            <CarForm car={editingCar} onSave={handleSave} />
+            <CarList cars={cars} onEdit={handleEditCar} onDelete={handleDeleteCar} />
+        </div>
+    );
 };
