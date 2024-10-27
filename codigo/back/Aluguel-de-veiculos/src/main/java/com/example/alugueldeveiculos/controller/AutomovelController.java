@@ -3,9 +3,9 @@ package com.example.alugueldeveiculos.controller;
 import com.example.alugueldeveiculos.model.AutomovelEntity;
 import com.example.alugueldeveiculos.service.AutomovelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -17,12 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173") // Considere configurar isso em um arquivo de propriedades para maior flexibilidade.
+@CrossOrigin(origins = "${frontend.url}") // URL do front-end configurada no application.properties
 @RequestMapping("/auto")
 public class AutomovelController {
 
     @Autowired
     private AutomovelService automovelService;
+
+    @Value("${imagem.diretorio.salvar}")
+    private String diretorioImagens;
+
+    @Value("${backend.url.imagens}")
+    private String urlBaseImagens;
 
     @GetMapping
     public List<AutomovelEntity> getAllAutomoveis() {
@@ -31,7 +37,10 @@ public class AutomovelController {
 
     @PostMapping
     public ResponseEntity<AutomovelEntity> inserirAutomovel(@RequestBody AutomovelEntity automovel) {
-        // Sugestão: Adicione validações no automóvel antes de inseri-lo.
+        if (automovel.getMarca() == null || automovel.getPlaca() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        
         AutomovelEntity savedAutomovel = automovelService.inserirAutomovel(automovel);
         return ResponseEntity.ok(savedAutomovel);
     }
@@ -48,15 +57,13 @@ public class AutomovelController {
     }
 
     private String salvarImagemEObterUrl(MultipartFile imagem) throws IOException {
-        // Sugestão: O caminho para salvar imagens deve ser configurável, em vez de estar hardcoded.
         String nomeArquivo = imagem.getOriginalFilename();
-        String caminhoSalvo = "caminho/para/salvar/" + nomeArquivo;
+        String caminhoSalvo = diretorioImagens + nomeArquivo;
 
         Path path = Paths.get(caminhoSalvo);
         Files.copy(imagem.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-        // Retorne uma URL adequada, considerando o contexto da aplicação.
-        return "http://localhost:8080/imagens/" + nomeArquivo;
+        return urlBaseImagens + nomeArquivo;
     }
 
     @DeleteMapping("/{id}")
